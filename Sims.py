@@ -9,6 +9,51 @@ class Human:
         self.money = 100
         self.glaness = 50
         self.satiety = 50
+        self.tiredness = 100
+        self.healthiness = 10
+
+
+
+class SportLife(Human):
+    tiredness = 100
+    healthiness = 10
+
+    def swimming(self):
+        if self.tiredness > 80:
+            print("I want to swim")
+            self.healthiness += 3
+            self.tiredness -= 5
+            print(self.healthiness, self.tiredness)
+            print("Okay, I'm done for now")
+        else:
+            if self.tiredness < 20:
+                print("I can't go swimming now. I'm tired.")
+
+    def training(self):
+        if self.healthiness < 10:
+            print("I need to train")
+            print("(Training...)")
+            self.healthiness += 5
+            self.tiredness -= 10
+            print("Okay, I'm done for now")
+        else:
+            if self.tiredness == 10:
+                print("I'm too tired right now. I need to rest.")
+                self.chill()
+            else:
+                print("I'm too lazy to do that")
+
+    def eat_fast_food(self):
+        if self.home.food <= 0:
+            self.shopping("fast food")
+        else:
+            if self.satiety >= 100:
+                self.satiety = 100
+                return
+            else:
+                self.satiety += 15
+                self.home.food -= 0
+                self.healthiness -= 5
 
     def get_home(self):
         self.home = House()
